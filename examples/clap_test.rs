@@ -35,7 +35,7 @@ enum EntType {
 
 
 fn main() {
-    let cli = Cli::parse();
-    let t = cli.time;
+    // let cli = Cli::parse();
+    // let t = cli.time;
  
 }

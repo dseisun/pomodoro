@@ -1,15 +1,17 @@
 // TODO: Simple timer that sleeps and ends -> COMPLETE
 // TODO: Timer that makes a sound when it ends -> COMPLETE
 // TODO: Timer that takes a cmd line param for how long it runs -> COMPLETE
-// TODO: 
-// TODO: Progress bar and countdown
+// TODO: Progress bar and countdown -> COMPLETE
+
+// TODO: Ability to clear screen or not clear screen as param
+// TODO: Ability to pause/resume
 
 
 use std::time::Duration;
 use std::{fs::File, error::Error};
 use std::io::BufReader;
 use rodio::{OutputStream, Sink, Decoder};
-use indicatif::{ProgressBar, ProgressIterator, ProgressStyle, HumanDuration, FormattedDuration};
+use indicatif::{ProgressBar, ProgressStyle, FormattedDuration};
 
 use clap::Parser;
 
@@ -46,7 +48,7 @@ fn countdown(time_in_minutes: u32) {
     let tick = Duration::from_secs(1);
 
     std::process::Command::new("clear").status().unwrap();
-    for secs_elapsed in (0..time_in_secs) {
+    for secs_elapsed in 0..time_in_secs {
 
 
 
@@ -54,7 +56,7 @@ fn countdown(time_in_minutes: u32) {
         let time_remaining = time_in_secs - secs_elapsed;
         bar.set_message(format!("Time remaining: {}", FormattedDuration(Duration::from_secs(time_remaining.into()))));
         bar.inc(1);
-        let time_left = Duration::from_secs(time_remaining.into());
+        // let time_left = Duration::from_secs(time_remaining.into());
         std::thread::sleep(tick);
     }
     
